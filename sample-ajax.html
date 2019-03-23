@@ -1,0 +1,33 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Single AJAX</title>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
+    var title = "notebook";
+    var queryURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=5810e556-949e-459a-a147-16db88bbd3dc";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+     
+    });
+// ---------------------------------------------------------
+
+  </script>
+
+</body>
+
+</html>
+
+
+
+
