@@ -10,23 +10,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
-    var title = "space+jam";
-    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+    var title = "notebook";
+    var queryURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=5810e556-949e-459a-a147-16db88bbd3dc";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
       console.log(response);
-      console.log(response.Runtime);
+     
     });
 // ---------------------------------------------------------
 
-    console.log("This console.log will probably happen first because of asynchronicity.");
-    var x = 2;
-    var y = 10;
-    var z = 13;
-    console.log("We can also assign some variables and do some arithmetic while we wait too: 2 + 10 + 13 = ", x + y + z);
   </script>
 
 </body>
@@ -36,4 +31,3 @@
 
 
 
-https://api.nytimes.com/svc/archive/v1/2019/1.json?api-key=MAiDo5qw3jDASEVfvZNakvNBnDb2lwDA
