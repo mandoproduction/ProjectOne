@@ -11,9 +11,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
-var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
-
 $("#search-term").on("click", function (event) {
     event.preventDefault();
 
