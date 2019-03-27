@@ -52,7 +52,10 @@ database.ref().on("child_added", function (snapshot) {
     
     $("#jawn").append(title);
     $("#jawn").append(urbanDef);
-    $("#jawn").append(websterDef);
+    $("#jawn").append(websterDef[0]);
+    $("#jawn").append(websterDef[1]);
+    $("#jawn").append(websterDef[2]);
+
 
 });
 
