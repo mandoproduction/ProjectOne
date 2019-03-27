@@ -15,15 +15,12 @@ var database = firebase.database();
 
 var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
 var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
-
+var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + title + "&api_key=F4fGkWxvKlltU0whS0rWe4WUd72HL7d8";
+//change search term
 $("#search-term").on("click", function (event) {
     event.preventDefault();
-
+//change search query
     title = $("#search-query").val().trim();
-
-    var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
-    var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
-
     $.ajax({
         url: urbanURL,
         method: "GET",
@@ -38,18 +35,21 @@ $("#search-term").on("click", function (event) {
                 title: title,
                 urbanDef: urbanDef,
                 websterDef: websterDef,
+                giphyDef: giphyDef
             }
             database.ref().push(newTerm);
+            //change search query
             $("#search-query").val("");
         });
     });
 });
 
+
 database.ref().on("child_added", function (snapshot) {
     var title = snapshot.val().title;
     var urbanDef = snapshot.val().urbanDef;
     var websterDef = snapshot.val().websterDef;
-    
+    //change jawns
     $("#jawn").append(title);
     $("#jawn").append(urbanDef);
     $("#jawn").append(websterDef[0]);
