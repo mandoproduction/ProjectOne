@@ -13,20 +13,13 @@ var letters = /^[A-Za-z]+$/;
 firebase.initializeApp(config);
 var database = firebase.database();
 
-
-
-
-
-
 $("#button-addon1").on("click", function (event) {
     event.preventDefault();
-        //change search query
-        title = $(".form-control").val().trim();
-        var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
-        console.log(title.length)
-        // checks form box input length and special characters
-        if (title.length != 0 || title.match(letters)) {
-            $.ajax({
+    title = $(".form-control").val().trim();
+    var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
+    // checks form box input length and special characters
+    if (title.length != 0 || title.match(letters)) {
+        $.ajax({
             url: urbanURL,
             method: "GET",
         }).then(function (responseUrban) {
@@ -38,9 +31,9 @@ $("#button-addon1").on("click", function (event) {
             if (urbanDef === undefined) {
                 $("#urban-dic").append("This term is does not have an Urban Dictionary definition.")
             }
-            else{
-            database.ref().push(newUrban)
-            $(".form-control").val("");
+            else {
+                database.ref().push(newUrban)
+                $(".form-control").val("");
             }
         })
     }
@@ -49,13 +42,11 @@ $("#button-addon1").on("click", function (event) {
     }
 })
 
-
 $("#button-addon1").on("click", function (event) {
     event.preventDefault();
-        //change search query
-        title = $(".form-control").val().trim();
-        var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
-        if (title.length != 0 || title.match(letters)) {
+    title = $(".form-control").val().trim();
+    var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
+    if (title.length != 0 || title.match(letters)) {
         $.ajax({
             url: websterURL,
             method: "GET",
@@ -81,24 +72,23 @@ $("#button-addon1").on("click", function (event) {
 
 $("#button-addon1").on("click", function (event) {
     event.preventDefault();
-    //change search query
     title = $(".form-control").val().trim();
     var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + title + "&api_key=F4fGkWxvKlltU0whS0rWe4WUd72HL7d8";
     if (title.length != 0 || title.match(letters)) {
-    $.ajax({
-        url: giphyURL,
-        method: "GET",
-    }).then(function (responseGiphy) {
+        $.ajax({
+            url: giphyURL,
+            method: "GET",
+        }).then(function (responseGiphy) {
             var giphyDef = responseGiphy.data;
             var newGiphy = {
                 title: title,
                 giphyDef: giphyDef,
-            }
+            };
             database.ref().push(newGiphy)
             $(".form-control").val("");
         })
     }
-    else{
+    else {
         $("<body>").append("")
     };
 });
@@ -109,44 +99,32 @@ database.ref().on("child_added", function (snapshot) {
     var websterDef = snapshot.val().websterDef;
     var giphyDef = snapshot.val().giphyDef;
 
-    //change jawns
     $("#urban-dic").append("<strong>" + title + "<strong>");
     $("#websters-dic").append("<strong>" + title + "<strong>");
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
 
     for (var i = 0; i < 3; i++) {
-
         var topicDiv = $("<div class='topic'>")
-
         var gifTitle = giphyDef[i].title;
         var named = $("<p>").text(gifTitle);
-
         var rating = giphyDef[i].rating;
         var rated = $("<p>").text("Rating: " + rating);
-
-
         var image = $("<img>");
         image.addClass("gif");
         image.attr("src", giphyDef[i].images.fixed_height.url);
-
-
         topicDiv.append(named);
         topicDiv.append(rated);
         topicDiv.append(image);
-
         $("#gif").append(topicDiv)
-        console.log(topicDiv)
     }
-
-
 });
 
 //clears all items from HTML, then from Firebase
 $("#clear-button").on("click", function (event) {
     $("#urban-dic").empty();
     $("#websters-dic").empty();
-    $("#gif").empty
+    $("#gif").empty();
     database.ref().remove();
 });
 
