@@ -14,23 +14,17 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-// checks form box input length and special characters
-function required(title) {
-    var letters = /^[A-Za-z]+$/;
-    if (title.value.length != 0 && title.value.match(letters)) {
-        return true;
-
-    }
-    return false;
-}
 
 
-$("#search-term").on("click", function (event) {
+
+
+$("#button-addon1").on("click", function (event) {
     event.preventDefault();
         //change search query
-        title = $("#search-query").val().trim();
+        title = $(".form-control").val().trim();
         var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
         console.log(title.length)
+        // checks form box input length and special characters
         if (title.length != 0 || title.match(letters)) {
             $.ajax({
             url: urbanURL,
@@ -42,22 +36,24 @@ $("#search-term").on("click", function (event) {
                 urbanDef: urbanDef
             };
             if (urbanDef === undefined) {
-                $("#gifs-appear-here").append("This term is does not have an Urban Dictionary definition.")
+                $("#urban-dic").append("This term is does not have an Urban Dictionary definition.")
             }
+            else{
             database.ref().push(newUrban)
-            $("#search-query").val("");
+            $(".form-control").val("");
+            }
         })
     }
     else {
-        $("#gifs-appear-here").append("This search term does not apply.")
+        $("#urban-dic").append("This search term does not apply.")
     }
 })
 
 
-$("#search-term").on("click", function (event) {
+$("#button-addon1").on("click", function (event) {
     event.preventDefault();
         //change search query
-        title = $("#search-query").val().trim();
+        title = $(".form-control").val().trim();
         var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
         if (title.length != 0 || title.match(letters)) {
         $.ajax({
@@ -70,45 +66,42 @@ $("#search-term").on("click", function (event) {
                 websterDef: websterDef,
             }
             if (websterDef === undefined) {
-                $("#gifs-appear-here").append("This term is not in the Merriam-Webster dictionary.")
+                $("#websters-dic").append("This term is not in the Merriam-Webster dictionary.")
             }
             else {
                 database.ref().push(newWebster)
-                $("#search-query").val("");
+                $(".form-control").val("");
             }
         })
     }
     else {
-        $("#gifs-appear-here").append("")
+        $("#<body>").append("")
     }
 })
 
-$("#search-term").on("click", function (event) {
+$("#button-addon1").on("click", function (event) {
     event.preventDefault();
     //change search query
-    title = $("#search-query").val().trim();
+    title = $(".form-control").val().trim();
     var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + title + "&api_key=F4fGkWxvKlltU0whS0rWe4WUd72HL7d8";
     if (title.length != 0 || title.match(letters)) {
     $.ajax({
         url: giphyURL,
         method: "GET",
-    })
-
-        .then(function (responseGiphy) {
-
+    }).then(function (responseGiphy) {
             var giphyDef = responseGiphy.data;
             var newGiphy = {
                 title: title,
                 giphyDef: giphyDef,
             }
             database.ref().push(newGiphy)
-            $("#search-query").val("");
+            $(".form-control").val("");
         })
     }
     else{
-        $("#gifs-appear-here").append("")
-    }
-})
+        $("<body>").append("")
+    };
+});
 
 database.ref().on("child_added", function (snapshot) {
     var title = snapshot.val().title;
@@ -117,9 +110,10 @@ database.ref().on("child_added", function (snapshot) {
     var giphyDef = snapshot.val().giphyDef;
 
     //change jawns
-    $("#gifs-appear-here").append("<strong>" + title + "<strong>");
-    $("#gifs-appear-here").append(urbanDef);
-    $("#gifs-appear-here").append(websterDef);
+    $("#urban-dic").append("<strong>" + title + "<strong>");
+    $("#websters-dic").append("<strong>" + title + "<strong>");
+    $("#urban-dic").append(urbanDef);
+    $("#websters-dic").append(websterDef);
 
     for (var i = 0; i < 3; i++) {
 
@@ -141,7 +135,7 @@ database.ref().on("child_added", function (snapshot) {
         topicDiv.append(rated);
         topicDiv.append(image);
 
-        $("#gifs-appear-here").append(topicDiv)
+        $("#gif").append(topicDiv)
         console.log(topicDiv)
     }
 
@@ -149,8 +143,10 @@ database.ref().on("child_added", function (snapshot) {
 });
 
 //clears all items from HTML, then from Firebase
-$("#clear-firebase-whole").on("click", function (event) {
-    $("#gifs-appear-here").empty();
+$("#clear-button").on("click", function (event) {
+    $("#urban-dic").empty();
+    $("#websters-dic").empty();
+    $("#gif").empty
     database.ref().remove();
 });
 
