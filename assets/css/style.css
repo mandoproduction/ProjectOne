@@ -2,12 +2,17 @@ body{
     background-color: ghostwhite;
 }
 .card{
-    background-color: lightgray;
+    background-color: ghostwhite;
     border-radius: 5px;
     width: 100%;
+    
 }
 
 .jumbotron{
     background-color: ghostwhite;
     
+}
+
+.card-img-top{
+    width: 30%;
 }
