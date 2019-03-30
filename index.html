@@ -43,8 +43,36 @@
             <div class="col-md-4">
               <div class="card mb-2" id="word">
                 <div class="card-body">
-                  <h1 class="card-title"></h1>
-                  <p class="card-text text-xl-center" id="title"></p>
+                  <h1 class="card-title text-xl-center"id="title"></h1>
+                </br>
+                  <p class="card-text text-xl-center"></p>
+                  <div class="search col-12 container-fluid">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <button
+                            class="btn btn-outline-secondary"
+                            type="button"
+                            id="button-addon1"
+                          >
+                            Search
+                          </button>
+                          <button
+                            class="btn btn-outline-secondary"
+                            type="button"
+                            id="clear-button"
+                          >
+                            Clear
+                          </button>
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Example text with button addon"
+                          aria-describedby="button-addon1"
+                        />
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -62,33 +90,7 @@
               </div>
             </div>
           </div>
-          <div class="search col-3 container-fluid">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  id="button-addon1"
-                >
-                  Search
-                </button>
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  id="clear-button"
-                >
-                  Clear
-                </button>
-              </div>
-              <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="Example text with button addon"
-                aria-describedby="button-addon1"
-              />
-            </div>
-          </div>
+          
           <div class="row row-gif">
             <div class="col-lg-4">
               <div class="gif-container text-center" id="gif0"></div>
