@@ -30,6 +30,13 @@ $( document ).ready(function() {
 
     }); // .onclick closing bracket
 
+    $('.form-control').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            alert('You pressed a "enter" key in textbox'); 
+        }
+    });
+
 
     function urbanCall(event) {
         event.preventDefault();
@@ -51,6 +58,7 @@ $( document ).ready(function() {
                 }
                 else {
                     database.ref().push(newUrban)
+                    console.log(newUrban)
                     $(".form-control").val("");
                 }
             })
@@ -66,7 +74,7 @@ $( document ).ready(function() {
         event.preventDefault();
         title = $(".form-control").val().trim();
         var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
-        if (title.length != 0 || title.match(letters)) {
+        if (title.length !== 0 || title.match(letters)) {
             $.ajax({
                 url: websterURL,
                 method: "GET",
@@ -81,7 +89,7 @@ $( document ).ready(function() {
                 }
                 else {
                     database.ref().push(newWebster)
-                    $(".form-control").val("");
+                    // $(".form-control").val("");
                 }
             })
         }
@@ -127,8 +135,8 @@ $( document ).ready(function() {
         var websterDef = snapshot.val().websterDef;
         var giphyDef = snapshot.val().giphyDef;
 
-        $("#urban-dic").append("<strong>" + title + "<strong>");
-        $("#websters-dic").append("<strong>" + title + "<strong>");
+        // $("#urban-dic").append("<strong>" + title + "<strong>");
+        // $("#websters-dic").append("<strong>" + title + "<strong>");
         $("#urban-dic").append(urbanDef);
         $("#websters-dic").append(websterDef);
 
@@ -139,7 +147,7 @@ $( document ).ready(function() {
             var rating = giphyDef[i].rating;
             var rated = $("<p>").text("Rating: " + rating);
             var image = $("<img>");
-            image.addClass("gif");
+            image.addclass("gif");
             image.attr("src", giphyDef[i].images.fixed_height.url);
             // topicDiv.append(named);
             // topicDiv.append(rated);
@@ -156,4 +164,4 @@ $( document ).ready(function() {
         database.ref().remove();
     });
 
-})// .onload closing bracket
+}) // .onload closing bracket
