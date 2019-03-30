@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
     $('#urban-dic').empty();
     $('#websters-dic').empty();
@@ -28,14 +28,19 @@ $( document ).ready(function() {
         urbanCall(event);
 
 
+
     }); // .onclick closing bracket
 
-    $('.form-control').keypress(function(event){
+    $('.form-control').keypress(function (event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
-        if(keycode == '13'){
-            alert('You pressed a "enter" key in textbox'); 
+        if (keycode == '13') {
+            giphyCall(event);
+            websterCall(event);
+            urbanCall(event);
+            
+
         }
-    });
+    }); //enter closing bracket
 
 
     function urbanCall(event) {
@@ -104,7 +109,7 @@ $( document ).ready(function() {
         event.preventDefault();
         title = $(".form-control").val().trim();
         var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + title + "&api_key=F4fGkWxvKlltU0whS0rWe4WUd72HL7d8";
-        if (title.length != 0 || title.match(letters)) {
+        if (title.length !== 0 || title.match(letters)) {
             $.ajax({
                 url: giphyURL,
                 method: "GET",
@@ -124,37 +129,10 @@ $( document ).ready(function() {
     }
 
 
+       
 
 
 
-
-
-    database.ref().on("child_added", function (snapshot) {
-        var title = snapshot.val().title;
-        var urbanDef = snapshot.val().urbanDef;
-        var websterDef = snapshot.val().websterDef;
-        var giphyDef = snapshot.val().giphyDef;
-
-        // $("#urban-dic").append("<strong>" + title + "<strong>");
-        // $("#websters-dic").append("<strong>" + title + "<strong>");
-        $("#urban-dic").append(urbanDef);
-        $("#websters-dic").append(websterDef);
-
-        for (var i = 0; i < 3; i++) {
-            var topicDiv = $("<div class='topic'>")
-            var gifTitle = giphyDef[i].title;
-            var named = $("<p>").text(gifTitle);
-            var rating = giphyDef[i].rating;
-            var rated = $("<p>").text("Rating: " + rating);
-            var image = $("<img>");
-            image.addclass("gif");
-            image.attr("src", giphyDef[i].images.fixed_height.url);
-            // topicDiv.append(named);
-            // topicDiv.append(rated);
-            topicDiv.append(image);
-            $("#gif").append(topicDiv)
-        }
-    });
 
     //clears all items from HTML, then from Firebase
     $("#clear-button").on("click", function (event) {
@@ -163,5 +141,30 @@ $( document ).ready(function() {
         $("#gif").empty();
         database.ref().remove();
     });
-
+    database.ref().on("child_added", function (snapshot) {
+        var title = snapshot.val().title;
+        var urbanDef = snapshot.val().urbanDef;
+        var websterDef = snapshot.val().websterDef;
+        var giphyDef = snapshot.val().giphyDef;
+    
+        // $("#urban-dic").append("<strong>" + title + "<strong>");
+        // $("#websters-dic").append("<strong>" + title + "<strong>");
+        $("#urban-dic").append(urbanDef);
+        $("#websters-dic").append(websterDef);
+    
+        for (var i = 0; i < 3; i++) {
+            var topicDiv = $("<div class='topic'>")
+            var gifTitle = giphyDef[i].title;
+            var named = $("<p>").text(gifTitle);
+            var rating = giphyDef[i].rating;
+            // var rated = $("<p>").text("Rating: " + rating);
+            var image = $("<img>");
+            image.addClass("gif" + i);
+            image.attr("src", giphyDef[i].images.fixed_height.url);
+            topicDiv.append(named);
+            topicDiv.append(rated);
+            topicDiv.append(image);
+            $("#gif" + i).append(topicDiv)
+        }
+    });
 }) // .onload closing bracket

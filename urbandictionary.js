@@ -1,3 +1,10 @@
+$( document ).ready(function() {
+
+    $('#urban-dic').empty();
+    $('#websters-dic').empty();
+    $('#gif').empty();
+
+
 var config = {
     apiKey: "AIzaSyAtmUN_ybY7kbbMc_2rdzyvruwpIaIX4Bs",
     authDomain: "project1-2489b.firebaseapp.com",
@@ -14,6 +21,24 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $("#button-addon1").on("click", function (event) {
+    
+    giphyCall(event);
+    websterCall(event);
+    urbanCall(event);
+
+})
+
+$('.form-control').keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        giphyCall(event);
+        websterCall(event);
+        urbanCall(event);
+
+    }
+})
+
+function urbanCall(event){
     event.preventDefault();
     title = $(".form-control").val().trim();
     var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
@@ -40,9 +65,11 @@ $("#button-addon1").on("click", function (event) {
     else {
         $("#urban-dic").append("This search term does not apply.")
     }
-})
+}
 
-$("#button-addon1").on("click", function (event) {
+
+function websterCall(event) {
+
     event.preventDefault();
     title = $(".form-control").val().trim();
     var websterURL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + title + "?key=9b48b980-097f-4626-9bc3-c269d87eb657";
@@ -68,9 +95,10 @@ $("#button-addon1").on("click", function (event) {
     else {
         $("#<body>").append("")
     }
-})
+}
 
-$("#button-addon1").on("click", function (event) {
+function giphyCall(event) {
+
     event.preventDefault();
     title = $(".form-control").val().trim();
     var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + title + "&api_key=F4fGkWxvKlltU0whS0rWe4WUd72HL7d8";
@@ -91,7 +119,7 @@ $("#button-addon1").on("click", function (event) {
     else {
         $("<body>").append("")
     };
-});
+}
 
 database.ref().on("child_added", function (snapshot) {
     var title = snapshot.val().title;
@@ -99,8 +127,8 @@ database.ref().on("child_added", function (snapshot) {
     var websterDef = snapshot.val().websterDef;
     var giphyDef = snapshot.val().giphyDef;
 
-    $("#urban-dic").append("<strong>" + title + "<strong>");
-    $("#websters-dic").append("<strong>" + title + "<strong>");
+    // $("#urban-dic").append("<strong>" + title + "<strong>");
+    // $("#websters-dic").append("<strong>" + title + "<strong>");
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
 
@@ -113,8 +141,8 @@ database.ref().on("child_added", function (snapshot) {
         var image = $("<img>");
         image.addClass("gif");
         image.attr("src", giphyDef[i].images.fixed_height.url);
-        topicDiv.append(named);
-        topicDiv.append(rated);
+        // topicDiv.append(named);
+        // topicDiv.append(rated);
         topicDiv.append(image);
         $("#gif").append(topicDiv)
     }
@@ -128,3 +156,4 @@ $("#clear-button").on("click", function (event) {
     database.ref().remove();
 });
 
+})
