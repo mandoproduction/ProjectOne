@@ -16,3 +16,14 @@ body{
 .card-img-top{
     width: 30%;
 }
+.list-group-item{
+    background-color: ghostwhite;
+    border: 0px;
+
+    
+}
+.gif-container{
+    background-color: blueviolet;
+    
+
+}
