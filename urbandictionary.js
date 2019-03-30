@@ -25,7 +25,7 @@ $("#button-addon1").on("click", function (event) {
         }).then(function (responseUrban) {
             var urbanDef = responseUrban.list[0].definition.replace(/\[|\]|\(|\)/g, "")
             var newUrban = {
-            
+
                 urbanDef: urbanDef
             };
             if (urbanDef === undefined) {
@@ -62,6 +62,7 @@ $("#button-addon1").on("click", function (event) {
             else {
                 database.ref().push(newWebster)
                 $(".form-control").val("");
+                console.log(title)
             }
         })
     }
@@ -81,7 +82,7 @@ $("#button-addon1").on("click", function (event) {
         }).then(function (responseGiphy) {
             var giphyDef = responseGiphy.data;
             var newGiphy = {
-               title: title,
+                title: title,
                 giphyDef: giphyDef,
             };
             database.ref().push(newGiphy)
@@ -99,9 +100,10 @@ database.ref().on("child_added", function (snapshot) {
     var websterDef = snapshot.val().websterDef;
     var giphyDef = snapshot.val().giphyDef;
 
-    
+
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
+    $("#title").append(title)
 
     for (var i = 0; i < 3; i++) {
         var topicDiv = $("<div class='topic'>")
