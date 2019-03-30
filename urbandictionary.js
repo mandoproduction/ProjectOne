@@ -26,7 +26,6 @@ $("#button-addon1").on("click", function (event) {
     giphyCall(event);
     websterCall(event);
     urbanCall(event);
-
 })
 
 $('.form-control').keypress(function (event) {
@@ -42,6 +41,8 @@ $('.form-control').keypress(function (event) {
 function urbanCall(event){
     event.preventDefault();
     title = $(".form-control").val().trim();
+    $('#title').text(title)
+
     var urbanURL = "https://api.urbandictionary.com/v0/define?term={" + title + "}";
     // checks form box input length and special characters
     if (title.length != 0 || title.match(letters)) {
