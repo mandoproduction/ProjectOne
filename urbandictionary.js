@@ -80,7 +80,7 @@ function websterCall(event) {
         }).then(function (responseWebster) {
             var websterDef = responseWebster[0].shortdef
             var newWebster = {
-            
+                title: title,
                 websterDef: websterDef,
             }
             if (websterDef === undefined) {
@@ -109,7 +109,7 @@ function giphyCall(event) {
         }).then(function (responseGiphy) {
             var giphyDef = responseGiphy.data;
             var newGiphy = {
-               
+               title: title,
                 giphyDef: giphyDef,
             };
             database.ref().push(newGiphy)
@@ -127,8 +127,7 @@ database.ref().on("child_added", function (snapshot) {
     var websterDef = snapshot.val().websterDef;
     var giphyDef = snapshot.val().giphyDef;
 
-    // $("#urban-dic").append("<strong>" + title + "<strong>");
-    // $("#websters-dic").append("<strong>" + title + "<strong>");
+    
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
 
