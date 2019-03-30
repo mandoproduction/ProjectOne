@@ -50,8 +50,8 @@ function urbanCall(event){
         }).then(function (responseUrban) {
             var urbanDef = responseUrban.list[0].definition.replace(/\[|\]|\(|\)/g, "")
             var newUrban = {
-            
-                urbanDef: urbanDef
+                title: title,
+                urbanDef: urbanDef,
             };
             if (urbanDef === undefined) {
                 $("#urban-dic").append("This term is does not have an Urban Dictionary definition.")
@@ -89,6 +89,7 @@ function websterCall(event) {
             else {
                 database.ref().push(newWebster)
                 $(".form-control").val("");
+                console.log(title)
             }
         })
     }
@@ -109,7 +110,7 @@ function giphyCall(event) {
         }).then(function (responseGiphy) {
             var giphyDef = responseGiphy.data;
             var newGiphy = {
-               title: title,
+                title: title,
                 giphyDef: giphyDef,
             };
             database.ref().push(newGiphy)
@@ -127,9 +128,10 @@ database.ref().on("child_added", function (snapshot) {
     var websterDef = snapshot.val().websterDef;
     var giphyDef = snapshot.val().giphyDef;
 
-    
+
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
+
 
     for (var i = 0; i < 3; i++) {
         var topicDiv = $("<div class='topic'>")
@@ -149,6 +151,7 @@ database.ref().on("child_added", function (snapshot) {
 
 //clears all items from HTML, then from Firebase
 $("#clear-button").on("click", function (event) {
+    $("#title").empty();
     $("#urban-dic").empty();
     $("#websters-dic").empty();
     $("#gif").empty();
