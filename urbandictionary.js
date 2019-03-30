@@ -99,8 +99,7 @@ database.ref().on("child_added", function (snapshot) {
     var websterDef = snapshot.val().websterDef;
     var giphyDef = snapshot.val().giphyDef;
 
-    $("#urban-dic").append("<strong>" + title + "<strong>");
-    $("#websters-dic").append("<strong>" + title + "<strong>");
+    
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
 
