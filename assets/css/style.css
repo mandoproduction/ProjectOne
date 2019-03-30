@@ -5,13 +5,17 @@ body{
     background-color: ghostwhite;
     border-radius: 5px;
     width: 100%;
+    font-family: 'Rajdhani', sans-serif;
     
 }
 
 .jumbotron{
     background-color: ghostwhite;
+    font-family: 'Iceberg', cursive;
+
     
 }
+
 
 .card-img-top{
     width: 30%;
@@ -19,6 +23,7 @@ body{
 .list-group-item{
     background-color: ghostwhite;
     border: 0px;
+    font-family: 'Rajdhani', sans-serif;
 
     
 }
