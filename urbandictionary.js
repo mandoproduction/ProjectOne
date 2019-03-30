@@ -25,8 +25,8 @@ $("#button-addon1").on("click", function (event) {
         }).then(function (responseUrban) {
             var urbanDef = responseUrban.list[0].definition.replace(/\[|\]|\(|\)/g, "")
             var newUrban = {
-
-                urbanDef: urbanDef
+                title: title,
+                urbanDef: urbanDef,
             };
             if (urbanDef === undefined) {
                 $("#urban-dic").append("This term is does not have an Urban Dictionary definition.")
@@ -103,7 +103,7 @@ database.ref().on("child_added", function (snapshot) {
 
     $("#urban-dic").append(urbanDef);
     $("#websters-dic").append(websterDef);
-    $("#title").append(title)
+
 
     for (var i = 0; i < 3; i++) {
         var topicDiv = $("<div class='topic'>")
@@ -123,6 +123,7 @@ database.ref().on("child_added", function (snapshot) {
 
 //clears all items from HTML, then from Firebase
 $("#clear-button").on("click", function (event) {
+    $("#title").empty();
     $("#urban-dic").empty();
     $("#websters-dic").empty();
     $("#gif").empty();
