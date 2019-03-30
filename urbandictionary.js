@@ -25,7 +25,7 @@ $("#button-addon1").on("click", function (event) {
         }).then(function (responseUrban) {
             var urbanDef = responseUrban.list[0].definition.replace(/\[|\]|\(|\)/g, "")
             var newUrban = {
-                title: title,
+            
                 urbanDef: urbanDef
             };
             if (urbanDef === undefined) {
@@ -53,7 +53,7 @@ $("#button-addon1").on("click", function (event) {
         }).then(function (responseWebster) {
             var websterDef = responseWebster[0].shortdef
             var newWebster = {
-                title: title,
+            
                 websterDef: websterDef,
             }
             if (websterDef === undefined) {
@@ -81,7 +81,7 @@ $("#button-addon1").on("click", function (event) {
         }).then(function (responseGiphy) {
             var giphyDef = responseGiphy.data;
             var newGiphy = {
-                title: title,
+               
                 giphyDef: giphyDef,
             };
             database.ref().push(newGiphy)
@@ -89,7 +89,7 @@ $("#button-addon1").on("click", function (event) {
         })
     }
     else {
-        $("<body>").append("")
+        $("#websters-dic").append("This search term does not apply.")
     };
 });
 
