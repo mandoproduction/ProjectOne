@@ -152,7 +152,7 @@ $(document).ready(function () {
         }
         // $("title").addclass("list-group-item")
 // console.log(item)
-        $('.list-group').append($(`<li class='list-group-item'>${title}</li>`));
+        $('.list-group').prepend($(`<li class='list-group-item text-center'>${title}</li>`));
     });
 
     //clears all items from HTML, then from Firebase
