@@ -27,7 +27,43 @@
             </div>
           </div>
           <div class="row justify-content-around">
-            <div class="col-md-4 text-xl-center">
+              <div class="col-md-4">
+                  <div class="card mb-2" id="word">
+                    <div class="card-body">
+                      <h1 class="card-title text-xl-center"id="title"></h1>
+                    </br>
+                      <p class="card-text text-xl-center"></p>
+                      <div class="search col-12 container-fluid">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <button
+                                class="btn btn-outline-secondary"
+                                type="button"
+                                id="button-addon1"
+                              >
+                                Search
+                              </button>
+                              <button
+                                class="btn btn-outline-secondary"
+                                type="button"
+                                id="clear-button"
+                              >
+                                Clear
+                              </button>
+                            </div>
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder=""
+                              aria-label="Example text with button addon"
+                              aria-describedby="button-addon1"
+                            />
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            <div class="col-md-4 order-md-first text-xl-center">
               <div class="card mb-2">
                 <img
                   src="assets/Images/Merriam-Webster_logo.svg"
@@ -40,42 +76,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card mb-2" id="word">
-                <div class="card-body">
-                  <h1 class="card-title text-xl-center"id="title"></h1>
-                </br>
-                  <p class="card-text text-xl-center"></p>
-                  <div class="search col-12 container-fluid">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <button
-                            class="btn btn-outline-secondary"
-                            type="button"
-                            id="button-addon1"
-                          >
-                            Search
-                          </button>
-                          <button
-                            class="btn btn-outline-secondary"
-                            type="button"
-                            id="clear-button"
-                          >
-                            Clear
-                          </button>
-                        </div>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder=""
-                          aria-label="Example text with button addon"
-                          aria-describedby="button-addon1"
-                        />
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </div>
+            
             <div class="col-md-4">
               <div class="card mb-2 text-xl-center">
                 <img
@@ -104,13 +105,10 @@
           </div>
 
           <div class="row">
-            <div class="col-lg-4 container-fluid" id="table">
-              <ul class="list-group">
-                <li class="list-group-item text-xl-center">Cras justo odio</li>
-                <li class="list-group-item text-xl-center">Dapibus ac facilisis in</li>
-                <li class="list-group-item text-xl-center">Morbi leo risus</li>
-                <li class="list-group-item text-xl-center">Porta ac consectetur ac</li>
-                <li class="list-group-item text-xl-center">Vestibulum at eros</li>
+            <div class="col-lg-4 container-fluid text-center" id="table">
+              <h2>Previous Searches</h2>
+              <ul class="list-group text-center">
+                
               </ul>
             </div>
           </div>
@@ -120,7 +118,7 @@
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-    <!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c9ac4f08befb23e"></script> -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c9ac4f08befb23e"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script
