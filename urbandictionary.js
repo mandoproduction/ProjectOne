@@ -147,11 +147,11 @@ $(document).ready(function () {
             $("#gif" + i).empty()
 
             $("#gif" + i).append(topicDiv)
-            
+
             // $('#title-list').append(title)
         }
         // $("title").addclass("list-group-item")
-// console.log(item)
+        // console.log(item)
         $('.list-group').prepend($(`<li class='list-group-item text-center'>${title}</li>`));
     });
 
