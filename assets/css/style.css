@@ -11,7 +11,7 @@ body{
 
 .jumbotron{
     background-color: ghostwhite;
-    font-family: 'Iceberg', cursive;
+    font-family: 'Rajdhani', sans-serif;
 
     
 }
@@ -27,6 +27,10 @@ body{
 
     
 }
+li{
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+}
 .gif-container{
     background-color: ghostwhite;
     
@@ -35,12 +39,10 @@ body{
 #word{
     background-color: ghostwhite;
 }
-
-.list-group{
-        max-height: 300px;
-        margin-bottom: 10px;
-        overflow:scroll;
-        -webkit-overflow-scrolling: touch;
-    
-
+h2{
+    font-family: 'Rajdhani', sans-serif;
+  
+}
+.card-text{
+    font-size: 20px;
 }
