@@ -150,7 +150,9 @@ $(document).ready(function () {
             
             // $('#title-list').append(title)
         }
-        $('.list-group').append($(`<li>${title}</li>`))
+        // $("title").addclass("list-group-item")
+// console.log(item)
+        $('.list-group').prepend($(`<li class='list-group-item text-center'>${title}</li>`));
     });
 
     //clears all items from HTML, then from Firebase
