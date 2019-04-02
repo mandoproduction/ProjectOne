@@ -162,6 +162,7 @@ $(document).ready(function () {
         $("#gif0").empty();
         $("#gif1").empty();
         $("#gif2").empty();
+        $("#title").empty();
         database.ref().remove();
     });
 
